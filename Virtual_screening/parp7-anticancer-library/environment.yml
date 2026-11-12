@@ -1,0 +1,18 @@
+name: deck
+channels: [conda-forge]
+dependencies:
+  - python=3.11
+  - rdkit>=2024.03
+  - numpy
+  - pandas
+  - scipy            # meeko imports it at import time
+  - openpyxl         # only needed for .xlsx source files
+  - pip
+  - pip:
+      - meeko
+      # Meeko 0.8.0 declares no dependencies of its own (Requires-Dist: None),
+      # so nothing it needs is installed automatically. At import time it
+      # requires numpy, pandas, scipy, rdkit and gemmi. The rest of what it
+      # references (torch, openff, espaloma, prody, AutoDockTools) belongs to
+      # features this pipeline does not use.
+      - gemmi
